@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://de5xdxbxiouwq"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_lg50i"]
+[ext_resource type="Texture2D" uid="uid://bp6wp6005ryab" path="res://queen.girlypop.png" id="2_316mp"]
+[ext_resource type="Texture2D" uid="uid://7yrysa4js2xc" path="res://queen.girlypop.walk.png" id="3_30wcs"]
+[ext_resource type="PackedScene" uid="uid://d2rqb5c72y4ba" path="res://test.platform.tscn" id="4_a15cy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_poyq3"]
+size = Vector2(227, 307.75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fesk2"]
+atlas = ExtResource("2_316mp")
+region = Rect2(0, 0, 300, 332)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6d88t"]
+atlas = ExtResource("2_316mp")
+region = Rect2(300, 0, 300, 332)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kecnk"]
+atlas = ExtResource("3_30wcs")
+region = Rect2(0, 0, 300, 332)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ykij"]
+atlas = ExtResource("3_30wcs")
+region = Rect2(300, 0, 300, 332)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3sdkk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fesk2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6d88t")
+}],
+"loop": false,
+"name": &"idle ",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kecnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ykij")
+}],
+"loop": false,
+"name": &"walk",
+"speed": 2.0
+}]
+
+[node name="Queen" type="Node2D"]
+position = Vector2(-3, -8)
+
+[node name="player" type="CharacterBody2D" parent="."]
+texture_filter = 1
+position = Vector2(293, 81)
+script = ExtResource("1_lg50i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2(-1, 15.875)
+shape = SubResource("RectangleShape2D_poyq3")
+
+[node name="QueenSprite" type="AnimatedSprite2D" parent="player"]
+position = Vector2(-8, 18)
+sprite_frames = SubResource("SpriteFrames_3sdkk")
+animation = &"idle "
+
+[node name="testplatform3" parent="." instance=ExtResource("4_a15cy")]
+position = Vector2(-82, 444)
+
+[node name="testplatform2" parent="." instance=ExtResource("4_a15cy")]
+position = Vector2(1051, 323)
+
+[node name="testplatform" parent="." instance=ExtResource("4_a15cy")]
+position = Vector2(491, 440)
