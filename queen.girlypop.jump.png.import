@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwqwphc82kbjl"
-path="res://.godot/imported/queen.girlypop.png-ec700f628a0a17daa5141513813c95eb.ctex"
+uid="uid://b6dfuke6ai0ue"
+path="res://.godot/imported/queen.girlypop.jump.png-50998246217c9ef499e4f5ed275e9152.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://queen.girlypop.png"
-dest_files=["res://.godot/imported/queen.girlypop.png-ec700f628a0a17daa5141513813c95eb.ctex"]
+source_file="res://queen.girlypop.jump.png"
+dest_files=["res://.godot/imported/queen.girlypop.jump.png-50998246217c9ef499e4f5ed275e9152.ctex"]
 
 [params]
 
