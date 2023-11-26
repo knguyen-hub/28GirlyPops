@@ -14,3 +14,7 @@ config/name="GirlypopAdventures"
 run/main_scene="res://StartScreenScene/start_screen.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Music="*res://music.tscn"

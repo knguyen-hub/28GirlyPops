@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnynnh5q0he15"]
+
+[ext_resource type="AudioStream" uid="uid://bow7752vg45qg" path="res://GirlyPop-Adventures-_2_.wav" id="1_tclsd"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_tclsd")
+autoplay = true
