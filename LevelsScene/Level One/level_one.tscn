@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3x4d4c1pxmeu"]
+[gd_scene load_steps=8 format=3 uid="uid://d3x4d4c1pxmeu"]
 
 [ext_resource type="Texture2D" uid="uid://cq80m13va5c36" path="res://Level Images/GirlyPop Castle Wall with Floor.png" id="1_4vhb8"]
 [ext_resource type="PackedScene" uid="uid://bkm7wuw80mtw1" path="res://PlatformScene/platform.tscn" id="2_oj65n"]
@@ -14,6 +14,9 @@ size = Vector2(665, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjqxa"]
 size = Vector2(22, 653)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygnkw"]
+size = Vector2(192, 20)
 
 [node name="LevelOne" type="Node2D"]
 
@@ -69,6 +72,7 @@ shape = SubResource("RectangleShape2D_5n4yl")
 [node name="LeftSide" type="CollisionShape2D" parent="CastleBackgroundPNG/OuterEdges"]
 position = Vector2(-8.5, 320)
 shape = SubResource("RectangleShape2D_iuc35")
+debug_color = Color(0.94902, 0.796078, 0.192157, 0.419608)
 
 [node name="RightSide" type="CollisionShape2D" parent="CastleBackgroundPNG/OuterEdges"]
 position = Vector2(319, -3)
@@ -77,3 +81,8 @@ shape = SubResource("RectangleShape2D_6q1fn")
 [node name="Top" type="CollisionShape2D" parent="CastleBackgroundPNG/OuterEdges"]
 position = Vector2(649, 322.5)
 shape = SubResource("RectangleShape2D_gjqxa")
+
+[node name="MovingToTheNextLevel" type="CollisionShape2D" parent="CastleBackgroundPNG/OuterEdges"]
+position = Vector2(555, 0)
+shape = SubResource("RectangleShape2D_ygnkw")
+debug_color = Color(0.94902, 0.796078, 0.192157, 0.419608)

@@ -32,10 +32,10 @@ texture = ExtResource("2_niev4")
 [node name="Text" type="Label" parent="CastleBackgroundPNG/BillboardPNG"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 117.0
-offset_top = 170.0
-offset_right = 524.0
-offset_bottom = 385.0
+offset_left = 114.0
+offset_top = 169.0
+offset_right = 528.0
+offset_bottom = 384.0
 theme_override_colors/font_color = Color(0.878431, 0.631373, 0.368627, 1)
 theme_override_fonts/font = ExtResource("3_ke26w")
 theme_override_font_sizes/font_size = 0
@@ -44,9 +44,9 @@ buff bubble monsters!
 
 Queen SlayGirl, please save us, girlypop fairies!
 
-+ Use WASD to walk and jump!
-+ Press \"E\" to shoot lasers out of your special crown to POP the
-bubble monsters!
++ Use the arrow keys to walk and jump!
++ Press SPACE to shoot lasers out of your special crown to POP
+the bubble monsters!
 
 There will be a lot of bubble monsters as you head up the tower,
 so be careful!"
@@ -64,6 +64,7 @@ shape = SubResource("RectangleShape2D_8e6ck")
 [node name="RightSide" type="CollisionShape2D" parent="CastleBackgroundPNG/OuterEdges"]
 position = Vector2(648, 321)
 shape = SubResource("RectangleShape2D_rctkl")
+debug_color = Color(0.94902, 0.796078, 0.192157, 0.419608)
 
 [node name="Floor" type="CollisionShape2D" parent="CastleBackgroundPNG/OuterEdges"]
 position = Vector2(324, 637)
