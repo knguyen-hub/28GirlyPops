@@ -13,8 +13,6 @@
 [sub_resource type="GDScript" id="GDScript_jcbqd"]
 script/source = "extends Area2D
 
-
-
 @export var move_speed : float = 30.0
 @export var move_direction : Vector2
 
@@ -23,7 +21,7 @@ var start_position : Vector2
 
 var character
 
-var fairy_freed : bool = true
+var fairy_freed : bool = false
 
 func _ready():
 	start_position = global_position
@@ -56,9 +54,13 @@ func _process(delta):
 		else:
 			$AnimatedSprite2D.flip_h = false
 		
-
 		
 	
+
+
+func _on_body_entered(body):
+	if body.is_in_group(\"characterGroup\"):
+		fairy_freed = true
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dha30"]
@@ -118,7 +120,7 @@ sprite_frames = SubResource("SpriteFrames_4ba28")
 animation = &"free"
 script = ExtResource("5_47ojv")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["characterGroup"]]
 position = Vector2(75, 296)
 script = ExtResource("8_bl5m3")
 
@@ -130,3 +132,5 @@ texture = ExtResource("9_2rgcg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(128, 122)
 shape = SubResource("RectangleShape2D_bep4h")
+
+[connection signal="body_entered" from="bubble_monster_pink" to="bubble_monster_pink" method="_on_body_entered"]
