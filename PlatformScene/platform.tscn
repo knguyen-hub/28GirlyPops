@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkm7wuw80mtw1"]
+
+[ext_resource type="Texture2D" uid="uid://binndgk3iskts" path="res://Level Images/Platform with Shadow.png" id="1_0qfwv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xad8l"]
+size = Vector2(253, 31)
+
+[node name="Platform" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7.5, -16.5)
+shape = SubResource("RectangleShape2D_xad8l")
+
+[node name="PlatformPNG" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 47)
+scale = Vector2(2.26, 2.16255)
+texture = ExtResource("1_0qfwv")

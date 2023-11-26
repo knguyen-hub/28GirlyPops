@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3x4d4c1pxmeu"]
+
+[ext_resource type="Texture2D" uid="uid://cq80m13va5c36" path="res://Level Images/GirlyPop Castle Wall with Floor.png" id="1_4vhb8"]
+[ext_resource type="PackedScene" uid="uid://bkm7wuw80mtw1" path="res://PlatformScene/platform.tscn" id="2_oj65n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5n4yl"]
+size = Vector2(658, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iuc35"]
+size = Vector2(27, 660)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6q1fn"]
+size = Vector2(665, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjqxa"]
+size = Vector2(22, 653)
+
+[node name="LevelOne" type="Node2D"]
+
+[node name="CastleBackgroundPNG" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 268.0
+offset_top = -3.0
+offset_right = 916.0
+offset_bottom = 645.0
+texture = ExtResource("1_4vhb8")
+
+[node name="Platform3" parent="CastleBackgroundPNG" instance=ExtResource("2_oj65n")]
+texture_filter = 1
+position = Vector2(509, 371)
+scale = Vector2(0.75, 0.75)
+
+[node name="Platform7" parent="CastleBackgroundPNG" instance=ExtResource("2_oj65n")]
+texture_filter = 1
+position = Vector2(558, 105)
+scale = Vector2(0.75, 0.75)
+
+[node name="Platform6" parent="CastleBackgroundPNG" instance=ExtResource("2_oj65n")]
+texture_filter = 2
+position = Vector2(532, 202)
+scale = Vector2(0.75, 0.75)
+
+[node name="Platform5" parent="CastleBackgroundPNG" instance=ExtResource("2_oj65n")]
+texture_filter = 1
+position = Vector2(344, 202)
+scale = Vector2(0.75, 0.75)
+
+[node name="Platform4" parent="CastleBackgroundPNG" instance=ExtResource("2_oj65n")]
+texture_filter = 1
+position = Vector2(167, 319)
+scale = Vector2(0.75, 0.75)
+
+[node name="Platform2" parent="CastleBackgroundPNG" instance=ExtResource("2_oj65n")]
+texture_filter = 1
+position = Vector2(329, 495)
+scale = Vector2(0.75, 0.75)
+
+[node name="Platform" parent="CastleBackgroundPNG" instance=ExtResource("2_oj65n")]
+texture_filter = 1
+position = Vector2(140, 495)
+scale = Vector2(0.75, 0.75)
+
+[node name="OuterEdges" type="StaticBody2D" parent="CastleBackgroundPNG"]
+
+[node name="Floor" type="CollisionShape2D" parent="CastleBackgroundPNG/OuterEdges"]
+position = Vector2(325, 640.5)
+shape = SubResource("RectangleShape2D_5n4yl")
+
+[node name="LeftSide" type="CollisionShape2D" parent="CastleBackgroundPNG/OuterEdges"]
+position = Vector2(-8.5, 320)
+shape = SubResource("RectangleShape2D_iuc35")
+
+[node name="RightSide" type="CollisionShape2D" parent="CastleBackgroundPNG/OuterEdges"]
+position = Vector2(319, -3)
+shape = SubResource("RectangleShape2D_6q1fn")
+
+[node name="Top" type="CollisionShape2D" parent="CastleBackgroundPNG/OuterEdges"]
+position = Vector2(649, 322.5)
+shape = SubResource("RectangleShape2D_gjqxa")
