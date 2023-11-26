@@ -1,0 +1,230 @@
+[gd_scene load_steps=29 format=3 uid="uid://dntx7t703enjd"]
+
+[ext_resource type="Texture2D" uid="uid://bv22sq0d4yxbv" path="res://bubbleGuy/blueone/bluebubbleguy_0001.png" id="1_0n3ve"]
+[ext_resource type="Texture2D" uid="uid://be38esquep0p" path="res://bubbleGuy/pinkone/bubbleguy2_0001.png" id="1_r145h"]
+[ext_resource type="Texture2D" uid="uid://ddcx4yj18kf0y" path="res://bubbleGuy/pinkone/bubbleguy2_0002.png" id="2_1nlej"]
+[ext_resource type="Texture2D" uid="uid://7hjca5k0u2gk" path="res://bubbleGuy/blueone/bluebubbleguy_0002.png" id="2_rspgk"]
+[ext_resource type="Texture2D" uid="uid://3ahq3sp2jugf" path="res://bubbleGuy/pinkone/bubbleguy2_0003.png" id="3_1x7b3"]
+[ext_resource type="Texture2D" uid="uid://direbq8vwpuoq" path="res://bubbleGuy/blueone/bluebubbleguy_0003.png" id="3_2u2ox"]
+[ext_resource type="Texture2D" uid="uid://byylxh2vbm2v4" path="res://bubbleGuy/pinkone/bubbleguy2_0004.png" id="4_tqqfg"]
+[ext_resource type="Texture2D" uid="uid://cn727ywgrsccu" path="res://bubbleGuy/blueone/bluebubbleguy_0004.png" id="4_u7jvp"]
+[ext_resource type="Texture2D" uid="uid://relmj7npkbqr" path="res://bubbleGuy/blueone/blueguyalone_0001.png" id="5_c3sya"]
+[ext_resource type="Texture2D" uid="uid://b22c1hf20px7u" path="res://bubbleGuy/pinkone/justpinkfairy_0001.png" id="5_ycp8m"]
+[ext_resource type="Texture2D" uid="uid://ci368pavclflc" path="res://bubbleGuy/blueone/blueguyalone_0002.png" id="6_arsf4"]
+[ext_resource type="Texture2D" uid="uid://c6exup7tcxfk2" path="res://bubbleGuy/pinkone/justpinkfairy_0002.png" id="6_o3g6f"]
+[ext_resource type="Texture2D" uid="uid://btw2xnnd2ayg8" path="res://bubbleGuy/orangeone/bubbleguy2orange_0001.png" id="7_evavg"]
+[ext_resource type="Texture2D" uid="uid://bhbq0mci6d4vm" path="res://bubbleGuy/greenone/bubbleguygreen_0001.png" id="7_k4iw4"]
+[ext_resource type="Texture2D" uid="uid://dfdbixyvbqlog" path="res://bubbleGuy/orangeone/bubbleguy2orange_0002.png" id="8_6oo5y"]
+[ext_resource type="Texture2D" uid="uid://d31lwf6c7ql1m" path="res://bubbleGuy/greenone/bubbleguygreen_0002.png" id="8_ipinw"]
+[ext_resource type="Texture2D" uid="uid://bijs8ojppu0gs" path="res://bubbleGuy/greenone/bubbleguygreen_0003.png" id="9_23oho"]
+[ext_resource type="Texture2D" uid="uid://qb542tq2jrb4" path="res://bubbleGuy/orangeone/bubbleguy2orange_0003.png" id="9_tpknk"]
+[ext_resource type="Texture2D" uid="uid://dbs8l0vmf08wc" path="res://bubbleGuy/greenone/bubbleguygreen_0004.png" id="10_12gq7"]
+[ext_resource type="Texture2D" uid="uid://bgnfg7eyfjn54" path="res://bubbleGuy/orangeone/bubbleguy2orange_0004.png" id="10_lsk47"]
+[ext_resource type="Texture2D" uid="uid://basabfdxtpqjg" path="res://bubbleGuy/greenone/greenfairyfree_0002.png" id="11_qwqlg"]
+[ext_resource type="Texture2D" uid="uid://d32g5hsqjvhqm" path="res://bubbleGuy/orangeone/orangeguyjustfairy_0001.png" id="11_xvdm4"]
+[ext_resource type="Texture2D" uid="uid://f0mjpq6w40c3" path="res://bubbleGuy/orangeone/orangeguyjustfairy_0002.png" id="12_73sea"]
+[ext_resource type="Texture2D" uid="uid://tum8xw5fdpl7" path="res://bubbleGuy/greenone/greenfairyfree_0001.png" id="12_a64a2"]
+[ext_resource type="Script" path="res://bubbleGuy/pinkBubbleAnimation.gd" id="13_2am4j"]
+
+[sub_resource type="GDScript" id="GDScript_jcbqd"]
+script/source = "extends Area2D
+
+@export var move_speed : float = 30.0
+@export var move_direction : Vector2
+@export var fairy_index : int
+@export var group_name : String = \"characterGroup\"
+
+var target_position : Vector2
+var start_position : Vector2
+
+var character
+
+var fairy_freed : bool = false
+
+func _ready():
+	start_position = global_position
+	target_position = start_position + move_direction
+	
+	
+func _process(delta):
+	# typical bubble monster
+	if not fairy_freed:
+		if fairy_index == 0:
+			$AnimatedSprite2D.play(\"default\")
+		elif fairy_index == 1:
+			$AnimatedSprite2D.play(\"orange_bubble\")
+		elif fairy_index == 2:
+			$AnimatedSprite2D.play(\"green_bubble\")
+		
+		global_position = global_position.move_toward(target_position, move_speed * delta)
+	
+		if global_position == target_position:
+			if target_position == start_position:
+				target_position = start_position + move_direction
+			else:
+				target_position = start_position
+			
+	else:
+		# play new animation
+		if fairy_index == 0:
+			$AnimatedSprite2D.play(\"free\")
+		elif fairy_index == 1:
+			$AnimatedSprite2D.play(\"orange_free\")
+		elif fairy_index == 2:
+			$AnimatedSprite2D.play(\"green_free\")
+		# follow around the character
+		target_position = get_parent().get_node(\"CharacterBody2D\").character_pos
+		target_position.x -= 100 * fairy_index
+		global_position = global_position.move_toward(target_position, move_speed * delta)
+		
+		if target_position.x - global_position.x < 0:
+			$AnimatedSprite2D.flip_h = true
+		else:
+			$AnimatedSprite2D.flip_h = false
+		
+		
+	
+
+
+func _on_body_entered(body):
+	if body.is_in_group(\"characterGroup\"):
+		fairy_freed = true
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dha30"]
+radius = 170.356
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ba28"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0n3ve")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_rspgk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2u2ox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_u7jvp")
+}],
+"loop": true,
+"name": &"blue_bubble",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_c3sya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_arsf4")
+}],
+"loop": true,
+"name": &"blue_free",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r145h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1nlej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1x7b3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tqqfg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ycp8m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o3g6f")
+}],
+"loop": true,
+"name": &"free",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_k4iw4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ipinw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_23oho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_12gq7")
+}],
+"loop": true,
+"name": &"green_bubble",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_qwqlg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_a64a2")
+}],
+"loop": true,
+"name": &"green_free",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_evavg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6oo5y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_tpknk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lsk47")
+}],
+"loop": true,
+"name": &"orange_bubble",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_xvdm4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_73sea")
+}],
+"loop": true,
+"name": &"orange_free",
+"speed": 2.0
+}]
+
+[node name="bubble_monster_pink" type="Area2D"]
+position = Vector2(561, 292)
+script = SubResource("GDScript_jcbqd")
+move_direction = Vector2(50, 0)
+fairy_index = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(18, 25)
+shape = SubResource("CircleShape2D_dha30")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-11, 21)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_4ba28")
+animation = &"blue_free"
+script = ExtResource("13_2am4j")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,124 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://ux1hbw10dtol"]
+[gd_scene load_steps=5 format=3 uid="uid://ux1hbw10dtol"]
 
-[ext_resource type="Texture2D" uid="uid://be38esquep0p" path="res://bubbleGuy/pinkone/bubbleguy2_0001.png" id="1_oyunl"]
-[ext_resource type="Texture2D" uid="uid://ddcx4yj18kf0y" path="res://bubbleGuy/pinkone/bubbleguy2_0002.png" id="2_sumvd"]
-[ext_resource type="Texture2D" uid="uid://3ahq3sp2jugf" path="res://bubbleGuy/pinkone/bubbleguy2_0003.png" id="3_iqbq2"]
-[ext_resource type="Texture2D" uid="uid://byylxh2vbm2v4" path="res://bubbleGuy/pinkone/bubbleguy2_0004.png" id="4_4nraf"]
-[ext_resource type="Script" path="res://bubbleGuy/pinkBubbleAnimation.gd" id="5_47ojv"]
-[ext_resource type="Texture2D" uid="uid://b22c1hf20px7u" path="res://bubbleGuy/pinkone/justpinkfairy_0001.png" id="5_snsue"]
-[ext_resource type="Texture2D" uid="uid://c6exup7tcxfk2" path="res://bubbleGuy/pinkone/justpinkfairy_0002.png" id="6_byg81"]
+[ext_resource type="PackedScene" uid="uid://dntx7t703enjd" path="res://bubbleGuy/bubble_monster.tscn" id="1_ebpyb"]
 [ext_resource type="Script" path="res://bubbleGuy/testCharacter.gd" id="8_bl5m3"]
 [ext_resource type="Texture2D" uid="uid://bxcpjnm3dxugn" path="res://onlyacceptapologiesincash.jpg" id="9_2rgcg"]
-
-[sub_resource type="GDScript" id="GDScript_jcbqd"]
-script/source = "extends Area2D
-
-@export var move_speed : float = 30.0
-@export var move_direction : Vector2
-
-var target_position : Vector2
-var start_position : Vector2
-
-var character
-
-var fairy_freed : bool = false
-
-func _ready():
-	start_position = global_position
-	target_position = start_position + move_direction
-	
-	
-func _process(delta):
-	# typical bubble monster
-	if not fairy_freed:
-		$AnimatedSprite2D.play(\"default\")
-		
-		global_position = global_position.move_toward(target_position, move_speed * delta)
-	
-		if global_position == target_position:
-			if target_position == start_position:
-				target_position = start_position + move_direction
-			else:
-				target_position = start_position
-			
-	else:
-		# play new animation
-		$AnimatedSprite2D.play(\"free\")
-		
-		# follow around the character
-		target_position = get_parent().get_node(\"CharacterBody2D\").character_pos
-		global_position = global_position.move_toward(target_position, move_speed * delta)
-		
-		if target_position.x - global_position.x < 0:
-			$AnimatedSprite2D.flip_h = true
-		else:
-			$AnimatedSprite2D.flip_h = false
-		
-		
-	
-
-
-func _on_body_entered(body):
-	if body.is_in_group(\"characterGroup\"):
-		fairy_freed = true
-"
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_dha30"]
-radius = 170.356
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_4ba28"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_oyunl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_sumvd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_iqbq2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_4nraf")
-}],
-"loop": true,
-"name": &"default",
-"speed": 3.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_snsue")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_byg81")
-}],
-"loop": true,
-"name": &"free",
-"speed": 2.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bep4h"]
 size = Vector2(216.5, 206.5)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(2, 1)
-
-[node name="bubble_monster_pink" type="Area2D" parent="."]
-position = Vector2(561, 292)
-script = SubResource("GDScript_jcbqd")
-move_direction = Vector2(50, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bubble_monster_pink"]
-position = Vector2(18, 25)
-shape = SubResource("CircleShape2D_dha30")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bubble_monster_pink"]
-texture_filter = 1
-position = Vector2(-11, 21)
-scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_4ba28")
-animation = &"free"
-script = ExtResource("5_47ojv")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["characterGroup"]]
 position = Vector2(75, 296)
@@ -133,4 +23,8 @@ texture = ExtResource("9_2rgcg")
 position = Vector2(128, 122)
 shape = SubResource("RectangleShape2D_bep4h")
 
-[connection signal="body_entered" from="bubble_monster_pink" to="bubble_monster_pink" method="_on_body_entered"]
+[node name="bubble_monster_pink2" parent="." instance=ExtResource("1_ebpyb")]
+position = Vector2(842, 426)
+fairy_index = 0
+
+[node name="bubble_monster_pink" parent="." instance=ExtResource("1_ebpyb")]
