@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3x4d4c1pxmeu"]
+[gd_scene load_steps=11 format=3 uid="uid://d3x4d4c1pxmeu"]
 
 [ext_resource type="Texture2D" uid="uid://cq80m13va5c36" path="res://Level Images/GirlyPop Castle Wall with Floor.png" id="1_4vhb8"]
 [ext_resource type="PackedScene" uid="uid://bkm7wuw80mtw1" path="res://PlatformScene/platform.tscn" id="2_oj65n"]
 [ext_resource type="PackedScene" uid="uid://de5xdxbxiouwq" path="res://queen.tscn" id="3_8354s"]
 [ext_resource type="Script" path="res://LevelsScene/Level One/entrance2_script.gd" id="4_bedvt"]
+[ext_resource type="PackedScene" uid="uid://dntx7t703enjd" path="res://bubbleGuy/bubble_monster.tscn" id="5_58i6b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5n4yl"]
 size = Vector2(658, 37)
@@ -79,7 +80,7 @@ shape = SubResource("RectangleShape2D_6q1fn")
 position = Vector2(649, 322.5)
 shape = SubResource("RectangleShape2D_gjqxa")
 
-[node name="Queen" parent="." instance=ExtResource("3_8354s")]
+[node name="Queen" parent="." groups=["characterGroup"] instance=ExtResource("3_8354s")]
 position = Vector2(271, 500)
 scale = Vector2(0.3, 0.3)
 
@@ -90,5 +91,10 @@ script = ExtResource("4_bedvt")
 position = Vector2(823, -3)
 shape = SubResource("RectangleShape2D_ygnkw")
 debug_color = Color(0.94902, 0.796078, 0.192157, 0.419608)
+
+[node name="bubble_monster_pink" parent="." instance=ExtResource("5_58i6b")]
+position = Vector2(368, 74)
+fairy_index = 0
+group_name = "Player"
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

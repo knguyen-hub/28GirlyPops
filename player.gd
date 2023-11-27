@@ -5,14 +5,12 @@ var speed = 300
 #var laser_scene = preload("res://laser.tscn")
 #signal laser_shot(laser_scene, location)
 #
-#@onready var muzzle = $Muzzle
-
-
 #func _process(delta):
 #	if Input.is_action_just_pressed("shoot"):
 #		shoot()
 
 func _process(delta):
+
 	if Input.is_action_pressed("ui_left"):
 		velocity.x = -speed 
 		$QueenSprite.play("walkingqueen")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://lo8r6axyvvh6"]
+[gd_scene load_steps=11 format=3 uid="uid://lo8r6axyvvh6"]
 
 [ext_resource type="Texture2D" uid="uid://ccbyl0pl10wot" path="res://Level Images/GirlyPop Castle Wall Background.png" id="1_emfau"]
 [ext_resource type="PackedScene" uid="uid://bkm7wuw80mtw1" path="res://PlatformScene/platform.tscn" id="2_jqu04"]
 [ext_resource type="Script" path="res://LevelsScene/Level Two/entrance3_script.gd" id="3_1gdke"]
 [ext_resource type="PackedScene" uid="uid://de5xdxbxiouwq" path="res://queen.tscn" id="3_kn1m1"]
+[ext_resource type="PackedScene" uid="uid://dntx7t703enjd" path="res://bubbleGuy/bubble_monster.tscn" id="5_e1elo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fx466"]
 size = Vector2(18, 676)
@@ -87,5 +88,10 @@ debug_color = Color(0.94902, 0.796078, 0.192157, 0.419608)
 [node name="Queen" parent="." instance=ExtResource("3_kn1m1")]
 position = Vector2(700, 462)
 scale = Vector2(0.3, 0.3)
+
+[node name="bubble_monster_pink" parent="." instance=ExtResource("5_e1elo")]
+position = Vector2(818, 105)
+move_direction = Vector2(-50, 0)
+group_name = "Player"
 
 [connection signal="body_entered" from="CastleBackgroundPNG/Area2D" to="CastleBackgroundPNG/Area2D" method="_on_body_entered"]

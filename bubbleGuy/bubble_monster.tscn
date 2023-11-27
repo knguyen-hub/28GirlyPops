@@ -73,7 +73,7 @@ func _process(delta):
 		elif fairy_index == 2:
 			$AnimatedSprite2D.play(\"green_free\")
 		# follow around the character
-		target_position = get_parent().get_node(\"CharacterBody2D\").character_pos
+		target_position = get_parent().get_node(\"Queen\").global_position
 		target_position.x -= 100 * fairy_index
 		global_position = global_position.move_toward(target_position, move_speed * delta)
 		
@@ -87,12 +87,13 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	if body.is_in_group(\"characterGroup\"):
+	if body.is_in_group(group_name):
 		fairy_freed = true
+		print(\"yay\")
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dha30"]
-radius = 170.356
+radius = 77.0065
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4ba28"]
 animations = [{
@@ -216,15 +217,15 @@ move_direction = Vector2(50, 0)
 fairy_index = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(18, 25)
+position = Vector2(0, 24)
 shape = SubResource("CircleShape2D_dha30")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-11, 21)
-scale = Vector2(5, 5)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_4ba28")
-animation = &"blue_free"
+animation = &"green_bubble"
 script = ExtResource("13_2am4j")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
