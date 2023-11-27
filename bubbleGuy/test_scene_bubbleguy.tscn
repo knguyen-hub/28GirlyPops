@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ux1hbw10dtol"]
+
+[ext_resource type="PackedScene" uid="uid://dntx7t703enjd" path="res://bubbleGuy/bubble_monster.tscn" id="1_ebpyb"]
+[ext_resource type="Script" path="res://bubbleGuy/testCharacter.gd" id="8_bl5m3"]
+[ext_resource type="Texture2D" uid="uid://bxcpjnm3dxugn" path="res://onlyacceptapologiesincash.jpg" id="9_2rgcg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bep4h"]
+size = Vector2(216.5, 206.5)
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(2, 1)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["characterGroup"]]
+position = Vector2(75, 296)
+script = ExtResource("8_bl5m3")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(129, 122)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_2rgcg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(128, 122)
+shape = SubResource("RectangleShape2D_bep4h")
+
+[node name="bubble_monster_pink2" parent="." instance=ExtResource("1_ebpyb")]
+position = Vector2(842, 426)
+fairy_index = 0
+
+[node name="bubble_monster_pink" parent="." instance=ExtResource("1_ebpyb")]
