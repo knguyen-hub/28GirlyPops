@@ -78,7 +78,7 @@ animations = [{
 [node name="Queen" type="Node2D"]
 position = Vector2(-1, -2)
 
-[node name="player" type="CharacterBody2D" parent="."]
+[node name="player" type="CharacterBody2D" parent="." groups=["Player"]]
 texture_filter = 1
 position = Vector2(217, 110)
 script = ExtResource("1_lg50i")
@@ -92,6 +92,3 @@ shape = SubResource("RectangleShape2D_poyq3")
 position = Vector2(-21, 126)
 sprite_frames = SubResource("SpriteFrames_853yp")
 animation = &"idlequeen"
-
-[node name="Muzzle" type="Marker2D" parent="player"]
-position = Vector2(53, -2)

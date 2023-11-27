@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqaef3t8sw3ui"]
+[gd_scene load_steps=9 format=3 uid="uid://cqaef3t8sw3ui"]
 
 [ext_resource type="Texture2D" uid="uid://cq80m13va5c36" path="res://Level Images/GirlyPop Castle Wall with Floor.png" id="1_bufh5"]
 [ext_resource type="Texture2D" uid="uid://dokhpuw04h8d2" path="res://Level Images/Billboard.png" id="2_4d5ei"]
 [ext_resource type="FontFile" uid="uid://do1201pjogdo8" path="res://Fonts/Born2bSportyV2.ttf" id="3_pc5sq"]
+[ext_resource type="PackedScene" uid="uid://de5xdxbxiouwq" path="res://queen.tscn" id="4_y5ug7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlujt"]
-size = Vector2(20, 671)
+size = Vector2(48, 671)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jtvtj"]
 size = Vector2(663, 20)
@@ -56,7 +57,7 @@ o(^w^)oo(^v^)o <- (this is us holding hands by the way)."
 [node name="OuterEdges" type="StaticBody2D" parent="CastleBackgroundPNG"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CastleBackgroundPNG/OuterEdges"]
-position = Vector2(0, 325.5)
+position = Vector2(14, 325.5)
 shape = SubResource("RectangleShape2D_jlujt")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="CastleBackgroundPNG/OuterEdges"]
@@ -70,3 +71,7 @@ shape = SubResource("RectangleShape2D_y56py")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="CastleBackgroundPNG/OuterEdges"]
 position = Vector2(326, 639)
 shape = SubResource("RectangleShape2D_m3lx2")
+
+[node name="Queen" parent="." instance=ExtResource("4_y5ug7")]
+position = Vector2(256, 319)
+scale = Vector2(0.75, 0.75)

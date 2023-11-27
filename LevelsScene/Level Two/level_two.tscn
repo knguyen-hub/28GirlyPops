@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://lo8r6axyvvh6"]
+[gd_scene load_steps=10 format=3 uid="uid://lo8r6axyvvh6"]
 
 [ext_resource type="Texture2D" uid="uid://ccbyl0pl10wot" path="res://Level Images/GirlyPop Castle Wall Background.png" id="1_emfau"]
 [ext_resource type="PackedScene" uid="uid://bkm7wuw80mtw1" path="res://PlatformScene/platform.tscn" id="2_jqu04"]
+[ext_resource type="Script" path="res://LevelsScene/Level Two/entrance3_script.gd" id="3_1gdke"]
+[ext_resource type="PackedScene" uid="uid://de5xdxbxiouwq" path="res://queen.tscn" id="3_kn1m1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fx466"]
 size = Vector2(18, 676)
@@ -16,7 +18,7 @@ size = Vector2(21, 667)
 size = Vector2(670, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ewxr3"]
-size = Vector2(219, 20)
+size = Vector2(163.5, 25)
 
 [node name="LevelTwo" type="Node2D"]
 
@@ -40,7 +42,7 @@ position = Vector2(130, 524)
 scale = Vector2(0.75, 0.75)
 
 [node name="Platform4" parent="CastleBackgroundPNG" instance=ExtResource("2_jqu04")]
-position = Vector2(124, 124)
+position = Vector2(118, 142)
 scale = Vector2(0.75, 0.75)
 
 [node name="Platform5" parent="CastleBackgroundPNG" instance=ExtResource("2_jqu04")]
@@ -52,7 +54,7 @@ position = Vector2(522, 287)
 scale = Vector2(0.75, 0.75)
 
 [node name="Platform7" parent="CastleBackgroundPNG" instance=ExtResource("2_jqu04")]
-position = Vector2(230, 210)
+position = Vector2(204, 242)
 scale = Vector2(0.75, 0.75)
 
 [node name="OuterEdges" type="StaticBody2D" parent="CastleBackgroundPNG"]
@@ -74,7 +76,16 @@ position = Vector2(325, 650)
 shape = SubResource("RectangleShape2D_kc360")
 debug_color = Color(0.94902, 0.796078, 0.192157, 0.419608)
 
-[node name="MovingToNextLevel" type="CollisionShape2D" parent="CastleBackgroundPNG/OuterEdges"]
-position = Vector2(99.5, 0)
+[node name="Area2D" type="Area2D" parent="CastleBackgroundPNG"]
+script = ExtResource("3_1gdke")
+
+[node name="MovingToNextLevel" type="CollisionShape2D" parent="CastleBackgroundPNG/Area2D"]
+position = Vector2(69.25, 2.5)
 shape = SubResource("RectangleShape2D_ewxr3")
 debug_color = Color(0.94902, 0.796078, 0.192157, 0.419608)
+
+[node name="Queen" parent="." instance=ExtResource("3_kn1m1")]
+position = Vector2(700, 462)
+scale = Vector2(0.3, 0.3)
+
+[connection signal="body_entered" from="CastleBackgroundPNG/Area2D" to="CastleBackgroundPNG/Area2D" method="_on_body_entered"]

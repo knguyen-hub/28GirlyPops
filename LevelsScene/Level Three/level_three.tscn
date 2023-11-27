@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ble773ht3fb7p"]
+[gd_scene load_steps=10 format=3 uid="uid://ble773ht3fb7p"]
 
 [ext_resource type="Texture2D" uid="uid://ccbyl0pl10wot" path="res://Level Images/GirlyPop Castle Wall Background.png" id="1_1dgvr"]
 [ext_resource type="PackedScene" uid="uid://bkm7wuw80mtw1" path="res://PlatformScene/platform.tscn" id="2_lmqx6"]
+[ext_resource type="PackedScene" uid="uid://de5xdxbxiouwq" path="res://queen.tscn" id="3_d1xwf"]
+[ext_resource type="Script" path="res://LevelsScene/Level Three/entrance4_script.gd" id="4_0dfai"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aom68"]
 size = Vector2(17, 672)
@@ -28,7 +30,7 @@ offset_bottom = 648.0
 texture = ExtResource("1_1dgvr")
 
 [node name="Platform5" parent="CastleBackgroundPNG" instance=ExtResource("2_lmqx6")]
-position = Vector2(356, 288)
+position = Vector2(426, 265)
 scale = Vector2(0.75, 0.75)
 
 [node name="Platform" parent="CastleBackgroundPNG" instance=ExtResource("2_lmqx6")]
@@ -44,7 +46,7 @@ position = Vector2(335, 514)
 scale = Vector2(0.75, 0.75)
 
 [node name="Platform4" parent="CastleBackgroundPNG" instance=ExtResource("2_lmqx6")]
-position = Vector2(147, 397)
+position = Vector2(133, 379)
 scale = Vector2(0.75, 0.75)
 
 [node name="Platform6" parent="CastleBackgroundPNG" instance=ExtResource("2_lmqx6")]
@@ -70,7 +72,16 @@ position = Vector2(320, 645)
 shape = SubResource("RectangleShape2D_c70vt")
 debug_color = Color(0.94902, 0.796078, 0.192157, 0.419608)
 
-[node name="MovingToNextScene" type="CollisionShape2D" parent="CastleBackgroundPNG/OuterEdges"]
-position = Vector2(653, 77)
+[node name="Queen" parent="." instance=ExtResource("3_d1xwf")]
+position = Vector2(340, 454)
+scale = Vector2(0.3, 0.3)
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("4_0dfai")
+
+[node name="MovingToNextScene" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(921, 77)
 shape = SubResource("RectangleShape2D_v273x")
 debug_color = Color(0.94902, 0.796078, 0.192157, 0.419608)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
